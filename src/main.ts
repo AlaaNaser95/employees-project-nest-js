@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { ConvertToUndefinedPipe } from './common/pipes/convert-to-undefined.pipe';
+import { ExceptionFilter } from './common/exceptions/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.useGlobalFilters(new ExceptionFilter());
+
   await app.listen(process.env.LISTENING_PORT ?? 3000);
 }
 bootstrap();
