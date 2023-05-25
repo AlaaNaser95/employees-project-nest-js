@@ -11,9 +11,12 @@ export class EmployeeService {
     const employee = await this.employeeRepository.save(
       this.employeeRepository.create(createEmployeedDto),
     );
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return { data: new EmployeeDto(employee) };
+    return {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      data: new EmployeeDto(employee),
+      message: 'Employee has been created successfully',
+    };
   }
 
   async listEmployees(filterEmployeeListDto) {
@@ -39,5 +42,19 @@ export class EmployeeService {
       }),
       count,
     );
+  }
+
+  async updateEmployee(employeeId, updateEmployeeDto) {
+    await this.employeeRepository.findOneOrException({
+      id: employeeId,
+    });
+    await this.employeeRepository.update(employeeId, updateEmployeeDto);
+    const employee = await this.employeeRepository.findOneOrException({
+      id: employeeId,
+    });
+    return {
+      data: new EmployeeDto(employee),
+      message: 'Employee has been updated successfully',
+    };
   }
 }
