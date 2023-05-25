@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { EmployeeRepository } from '../../database/repositories/employee.repository';
 import { EmployeeDto } from './dtos/response/employee.dto';
 import { PaginationResponseDto } from '../../common/dtos/pagination-response.dto';
@@ -66,5 +66,21 @@ export class EmployeeService {
       data: new EmployeeDto(employee),
       message: 'Employee has been returned successfully',
     };
+  }
+
+  async deleteEmployee(employeeId, deleteEmployeeDto) {
+    await this.employeeRepository.findOneOrException({
+      id: employeeId,
+    });
+    const { softDelete } = deleteEmployeeDto;
+    try {
+      if (softDelete) await this.employeeRepository.softDelete(employeeId);
+      else await this.employeeRepository.delete(employeeId);
+    } catch (e) {
+      throw new HttpException(
+        'SomeThing went wrong while deleting the employee',
+        500,
+      );
+    }
   }
 }
