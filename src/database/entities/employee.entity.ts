@@ -56,4 +56,12 @@ export class Employee extends Base {
   @IsOptional()
   @IsString()
   address: string;
+
+  public getFullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  public getPhone() {
+    return this.phoneCode + ' ' + this.phoneNumber;
+  }
 }
