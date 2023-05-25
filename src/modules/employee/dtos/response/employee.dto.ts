@@ -14,6 +14,7 @@ export class EmployeeDto extends EmployeeListDto {
 
   readonly absenceDaysCount: number;
   readonly address: string;
+  readonly createdAt: Date;
 
   constructor(employee: Employee) {
     super(employee);
@@ -24,5 +25,6 @@ export class EmployeeDto extends EmployeeListDto {
     this.dob = employee.dob;
     this.absenceDaysCount = employee.absenceDaysCount;
     this.address = employee.address;
+    this.createdAt = employee.createdAt;
   }
 }
