@@ -1,0 +1,19 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+const env = process.env;
+
+const ormConfig = {
+  type: env.DATABASE_TYPE || 'mysql',
+  host: env.DATABASE_HOST || 'localhost',
+  port: env.DATABASE_PORT || 3306,
+  username: env.DATABASE_USERNAME,
+  password: env.DATABASE_PASSWORD,
+  database: env.DATABASE,
+  entities: ['dist/database/entities/*.js'],
+  synchronize: env.DATABASE_SYNC || false,
+  autoLoadEntities: true,
+  logging: env.DATABASE_LOGGING || false,
+};
+
+export default ormConfig;
