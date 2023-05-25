@@ -57,4 +57,14 @@ export class EmployeeService {
       message: 'Employee has been updated successfully',
     };
   }
+
+  async getEmployee(employeeId) {
+    const employee = await this.employeeRepository.findOneOrException({
+      id: employeeId,
+    });
+    return {
+      data: new EmployeeDto(employee),
+      message: 'Employee has been returned successfully',
+    };
+  }
 }

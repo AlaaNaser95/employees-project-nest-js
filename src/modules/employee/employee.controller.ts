@@ -36,4 +36,9 @@ export class EmployeeController {
   ) {
     return this.employeeService.updateEmployee(employeeId, updateEmployeeDto);
   }
+
+  @Get(':employeeId')
+  getEmployee(@Param('employeeId', ParseIntPipe) employeeId: number) {
+    return this.employeeService.getEmployee(employeeId);
+  }
 }

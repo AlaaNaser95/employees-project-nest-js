@@ -62,6 +62,6 @@ export class Employee extends Base {
   }
 
   public getPhone() {
-    return this.phoneCode + ' ' + this.phoneNumber;
+    return this.phoneCode + this.phoneNumber;
   }
 }
