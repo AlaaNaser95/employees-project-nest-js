@@ -6,7 +6,7 @@ import {
   IsString,
   Min,
 } from 'class-validator';
-import { PositionsEnum } from '../../../../enums/positions.enum';
+import { PositionsEnum } from '../../../../common/enums/positions.enum';
 
 export class CreateEmployeeDto {
   @IsNotEmpty()

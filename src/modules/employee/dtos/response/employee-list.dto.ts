@@ -1,4 +1,4 @@
-import { PositionsEnum } from '../../../../enums/positions.enum';
+import { PositionsEnum } from '../../../../common/enums/positions.enum';
 import { Employee } from '../../../../database/entities/employee.entity';
 
 export class EmployeeListDto {

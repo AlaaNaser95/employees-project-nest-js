@@ -8,7 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Base } from './base';
-import { PositionsEnum } from '../../enums/positions.enum';
+import { PositionsEnum } from '../../common/enums/positions.enum';
 
 @Entity()
 export class Employee extends Base {
