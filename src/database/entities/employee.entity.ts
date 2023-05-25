@@ -1,6 +1,7 @@
 import { Column, Entity } from 'typeorm';
 import {
   IsDate,
+  IsEmail,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -9,6 +10,7 @@ import {
 } from 'class-validator';
 import { Base } from './base';
 import { PositionsEnum } from '../../common/enums/positions.enum';
+import { GenderEnum } from '../../common/enums/gender.enum';
 
 @Entity()
 export class Employee extends Base {
@@ -56,6 +58,19 @@ export class Employee extends Base {
   @IsOptional()
   @IsString()
   address: string;
+
+  @Column({
+    type: 'enum',
+    enum: GenderEnum,
+  })
+  @IsNotEmpty()
+  @IsEnum(GenderEnum)
+  gender: GenderEnum;
+
+  @Column()
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
 
   public getFullName() {
     return this.firstName + ' ' + this.lastName;

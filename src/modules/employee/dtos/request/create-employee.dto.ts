@@ -1,4 +1,5 @@
 import {
+  IsEmail,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -7,6 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { PositionsEnum } from '../../../../common/enums/positions.enum';
+import { GenderEnum } from '../../../../common/enums/gender.enum';
 
 export class CreateEmployeeDto {
   @IsNotEmpty()
@@ -45,4 +47,12 @@ export class CreateEmployeeDto {
   @IsOptional()
   @IsString()
   address: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  @IsEnum(GenderEnum)
+  gender: GenderEnum;
 }
